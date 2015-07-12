@@ -85,8 +85,7 @@ module AASM
           aasm_write_attribute state
 
           success = if aasm_skipping_validations
-            value = aasm_raw_attribute_value state
-            self.class.where(self.class.primary_key => self.id).update_all(self.class.aasm.attribute_name => value) == 1
+            self.save(validate: false)
           else
             self.save
           end
